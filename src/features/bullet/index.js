@@ -44,33 +44,52 @@ class Bullet extends React.Component {
     const y = newPos[1] / SPRITE_SIZE
     const x = newPos[0] / SPRITE_SIZE
     const nextTile = tiles[y][x]
+    this.hitTank(tiles, newPos, x, y)    
     this.updateTiles(tiles, x, y)
-
+    
     return nextTile < 5
+  }
+
+  releaseBoom(tiles, x, y) {
+    tiles[y][x] = 9
+    store.dispatch({
+      type: 'ADD_TILES',
+      payload: {
+        tiles: tiles,
+        bullets: []
+      }
+    })
+    tiles[y][x] = 0
+    setTimeout(() => {
+      store.dispatch({
+          type: 'UPDATE_TILES',
+          payload: {
+          tiles: tiles,
+          bullets: []
+        }
+      })
+    }, 100)
+  }
+
+  hitTank(tiles, newPos, x, y) {
+    const tanks = store.getState().world.tanks
+    tanks.map((tank, index) => {
+      if(tank.position[0] === newPos[0] && tank.position[1] === newPos[1]){
+        console.log("hint tank " + index)
+        this.releaseBoom(tiles, x, y)
+        store.dispatch({
+          type: 'REMOVE_TANK',
+          index: index
+        })
+      }
+    })
   }
 
   updateTiles(tiles, x, y) {
     const nextTile = tiles[y][x]
     switch(nextTile) {
       case 5:
-        tiles[y][x] = 9
-        store.dispatch({
-          type: 'ADD_TILES',
-          payload: {
-            tiles: tiles,
-            bullets: []
-          }
-        })
-        tiles[y][x] = 0
-        setTimeout(() => {
-          store.dispatch({
-              type: 'UPDATE_TILES',
-              payload: {
-              tiles: tiles,
-              bullets: []
-            }
-          })
-        }, 100)
+        this.releaseBoom(tiles, x, y)
         break  
       case 10:
         FLAG_POSITION.map((row) => tiles[row[0]][row[1]] = 11)
@@ -84,12 +103,11 @@ class Bullet extends React.Component {
 
         store.dispatch({
           type: 'GAMEOVER',
-          payload: {
-            gameover: true,
-          }
+          gameover: true,
         })            
         break        
       default:
+        break
     }
   }
 

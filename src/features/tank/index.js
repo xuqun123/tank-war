@@ -10,12 +10,17 @@ class Tank extends React.Component {
       direction: props.direction,
       position: props.position,
       rotate: 0,
+      index: props.index
     }
   }
 
   componentDidMount() {
     this.timerID = setInterval(() => this.tick(), 200)
   }
+
+  componentWillUnmount() {
+    clearInterval(this.timerID)
+  }  
 
   tick() {
     let newPos = this.getBulletPosition(this.state.direction, this.state.position)
@@ -24,7 +29,13 @@ class Tank extends React.Component {
       this.setState({
         position: newPos,
         rotate: this.directionToRotateDegree(this.state.direction)
-      })      
+      })     
+      store.dispatch({
+        type: 'UPDATE_TANK',
+        index: this.state.index,
+        position: newPos,
+        direction: this.state.direction
+      })         
     } else {
       this.changeDirection()
     }
@@ -46,8 +57,13 @@ class Tank extends React.Component {
       direction: direction,
       rotate: this.directionToRotateDegree(direction)
     })
-    console.log("change direction to: " + direction )
-    console.log("random: " + random )
+    store.dispatch({
+        type: 'UPDATE_TANK',
+        index: this.state.index,
+        position: this.state.position,
+        direction: direction
+    })      
+    // console.log("change direction to: " + direction )
   }
 
   obeserveBoundaries(newPos) {

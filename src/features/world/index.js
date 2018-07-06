@@ -6,7 +6,7 @@ import GameOver from '../gameover'
 
 import { connect } from 'react-redux'
 
-function World(props) {
+function World(props) {  
   return(
     <div
       style={{
@@ -17,8 +17,7 @@ function World(props) {
     }}>
       <Map />
       <Player/> 
-      <Tank direction={'SOUTH'} position={[0,0]}/> 
-      <Tank direction={'NORTH'} position={[780,460]}/> 
+      {props.tanks.map((tank, index) => <Tank key={index} index={index} direction={tank.direction} position={tank.position}/> )}
       {props.gameover === true ? <GameOver/> : ""}
     </div>
   )
