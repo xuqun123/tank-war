@@ -15,7 +15,8 @@ const worldReducer = (state=intialState, action) => {
           ...state.tanks,
           {
             position: action.position, 
-            direction: action.direction
+            direction: action.direction,
+            key_index: action.key_index
           }
         ]
 
@@ -26,6 +27,7 @@ const worldReducer = (state=intialState, action) => {
           state.tanks.map((tank, index) => {
             if (index === action.index) {
               return Object.assign({}, tank, {
+                ...tank.key_index,
                 position: action.position, 
                 direction: action.direction
               })
@@ -34,8 +36,16 @@ const worldReducer = (state=intialState, action) => {
           })
       })    
     case 'REMOVE_TANK':
+      let tanks = state.tanks.filter( (tank, index) => index !== action.index)      
       return Object.assign({}, state, {
-        tanks: state.tanks.filter( (tank, index) => index !== action.index)
+        tanks: 
+          tanks.map((tank, index) => {
+            return {
+              position: tank.position,
+              direction: tank.direction,
+              key_index: Date.now() + index
+            }       
+          })
       })
     default:
       return state

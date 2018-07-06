@@ -16,13 +16,21 @@ class App extends Component {
     store.dispatch({
       type: 'ADD_TANK',
       position: [0,0],
-      direction: 'SOUTH'
+      direction: 'SOUTH',
+      key_index: Date.now()
     })  
     store.dispatch({
       type: 'ADD_TANK',
       position: [780,460],
-      direction: 'NORTH'
+      direction: 'NORTH',
+      key_index: Date.now() + 1
     })         
+    store.dispatch({
+      type: 'ADD_TANK',
+      position: [740,0],
+      direction: 'WEST',
+      key_index: Date.now() + 2
+    })             
   }
 
   render() {

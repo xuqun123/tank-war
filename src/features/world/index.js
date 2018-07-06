@@ -17,7 +17,7 @@ function World(props) {
     }}>
       <Map />
       <Player/> 
-      {props.tanks.map((tank, index) => <Tank key={index} index={index} direction={tank.direction} position={tank.position}/> )}
+      {props.tanks.map((tank, index) => <Tank key={tank.key_index} index={index} direction={tank.direction} position={tank.position}/> )}
       {props.gameover === true ? <GameOver/> : ""}
     </div>
   )
