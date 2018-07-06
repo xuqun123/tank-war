@@ -1,19 +1,12 @@
 import React from 'react'
 import Map from '../map'
 import Player from '../player'
+import Tank from '../tank'
+import GameOver from '../gameover'
 
-import { tiles } from '../../data/maps/1'
-import store from '../../config/store'
+import { connect } from 'react-redux'
 
 function World(props) {
-  store.dispatch({
-    type: 'ADD_TILES',
-    payload: {
-      tiles: tiles,
-      bullets: []
-    }
-  })
-
   return(
     <div
       style={{
@@ -24,9 +17,17 @@ function World(props) {
     }}>
       <Map />
       <Player/> 
+      <Tank direction={'SOUTH'} position={[0,0]}/> 
+      <Tank direction={'NORTH'} position={[780,460]}/> 
+      {props.gameover === true ? <GameOver/> : ""}
     </div>
   )
 }
 
-export default World
-    
+function mapStateToProps(state) {
+  return {
+    ...state.world
+  } 
+}
+
+export default connect(mapStateToProps)(World)

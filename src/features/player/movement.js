@@ -114,25 +114,26 @@ export default function handleMovement(player) {
 
   function handleKeyDown(e) {
     e.preventDefault()
-    // window.cancelAnimationFrame(store.getState().bullets.last_bullet_frame_id)
-    switch (e.keyCode) {
-      case 32:
-        return fireBullet()
+    if (store.getState().world.gameover !== true) {
+      switch (e.keyCode) {
+        case 32:
+          return fireBullet()
 
-      case 37:
-        return attemptMove('WEST')
+        case 37:
+          return attemptMove('WEST')
 
-      case 38:
-        return attemptMove('NORTH')
+        case 38:
+          return attemptMove('NORTH')
 
-      case 39:
-        return attemptMove('EAST')
+        case 39:
+          return attemptMove('EAST')
 
-      case 40:
-        return attemptMove('SOUTH')
-                                
-      default:
-        return console.log(e.keyCode)
+        case 40:
+          return attemptMove('SOUTH')
+                                  
+        default:
+          return console.log(e.keyCode)
+      }
     }
   }
 
