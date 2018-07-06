@@ -1,5 +1,6 @@
 const intialState = {
-  tiles: []
+  tiles: [],
+  bullets: []
 }
 
 const mapReducer = (state=intialState, action) => {
@@ -8,6 +9,10 @@ const mapReducer = (state=intialState, action) => {
       return {
         ...action.payload
       }
+    case 'ADD_MAP_BULLETS':
+      return {
+        ...action.payload
+      }      
     default:
       return state
   }

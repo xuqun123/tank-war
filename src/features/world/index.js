@@ -10,6 +10,7 @@ function World(props) {
     type: 'ADD_TILES',
     payload: {
       tiles: tiles,
+      bullets: []
     }
   })
 
@@ -22,7 +23,7 @@ function World(props) {
         margin: '20px auto'
     }}>
       <Map />
-      <Player/>    
+      <Player/> 
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import walkSprite from './player_walk.png'
+import walkSprite from './tank1.png'
 import handleMovement from './movement'
 
 function Player(props) {
@@ -12,11 +12,10 @@ function Player(props) {
         left: props.position[0],
         backgroundImage: `url(${walkSprite})`,
         backgroundPosition: props.spriteLocation,
-        width: '40px',
-        height: '40px',
-      }}
-    />
-  )
+        width: '20px',
+        height: '20px'}}>
+    </div>
+  )  
 }
 
 function mapStateToProps(state) {

@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import Map from './features/map'
-import Player from './features/player'
 import World from './features/world'
 
 class App extends Component {
@@ -12,5 +10,6 @@ class App extends Component {
     )
   }
 }
+
 
 export default App

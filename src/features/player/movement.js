@@ -13,9 +13,9 @@ export default function handleMovement(player) {
         return [oldPos[0], oldPos[1] - SPRITE_SIZE]
       case 'SOUTH':
         return [oldPos[0], oldPos[1] + SPRITE_SIZE]
+      default:
+        return [0, 0]
     }
-
-    [ oldPos[0] - SPRITE_SIZE, oldPos[1] ]
   }
 
   function getSpriteLocation(direction, walkIndex) {
@@ -28,6 +28,8 @@ export default function handleMovement(player) {
         return `${SPRITE_SIZE*walkIndex}px ${SPRITE_SIZE*2}px`
       case 'NORTH':
         return `${SPRITE_SIZE*walkIndex}px ${SPRITE_SIZE*3}px`
+      default:
+        return "0px 0px"
     }
   }
 
@@ -46,7 +48,7 @@ export default function handleMovement(player) {
 
   function getWalkIndex() {
     const walkIndex = store.getState().player.walkIndex
-    return walkIndex >= 7 ? 0 : walkIndex + 1
+    return walkIndex >= 1 ? 0 : walkIndex + 1
   }
 
   function dispatchMove(direction, newPos) {
@@ -58,9 +60,19 @@ export default function handleMovement(player) {
         position: newPos,
         direction: direction,
         spriteLocation: getSpriteLocation(direction, walkIndex),
-        walkIndex: walkIndex
+        walkIndex: walkIndex,
+        bullets: []
       }
     })
+
+    // store.dispatch({
+    //   type: 'CHANGE_BULLET_DIRECTION',
+    //   payload: {
+    //     position: store.getState().bullet.position,
+    //     direction: direction,
+    //     rotate: rotate
+    //   }
+    // })    
   }
 
   function attemptMove(direction) {
@@ -71,10 +83,28 @@ export default function handleMovement(player) {
       dispatchMove(direction, newPos)
   }
 
+  function fireBullet() {
+    let bulletPosition = store.getState().player.position
+    let bullets = store.getState().bullets.bullets
+
+    bullets = bullets.concat([bulletPosition.concat(store.getState().player.direction)])
+    console.log(bulletPosition)
+    store.dispatch({
+      type: 'ADD_BULLETS',
+      payload: {
+        bullets: bullets,
+        last_bullet_position: bulletPosition
+      }
+    })    
+  }
+
   function handleKeyDown(e) {
     e.preventDefault()
-
+    // window.cancelAnimationFrame(store.getState().bullets.last_bullet_frame_id)
     switch (e.keyCode) {
+      case 32:
+        return fireBullet()
+
       case 37:
         return attemptMove('WEST')
 

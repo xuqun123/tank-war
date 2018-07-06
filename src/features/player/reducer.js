@@ -1,8 +1,9 @@
 const intialState = {
-  position: [0, 0],
-  spriteLocation: '0px 0px',
-  direction: 'EAST',
-  walkIndex: 0
+  position: [280, 460],
+  spriteLocation: '0px 60px',
+  direction: 'NORTH',
+  walkIndex: 0,
+  bullets: []
 }
 
 const playerReducer = (state=intialState, action) => {
@@ -11,6 +12,10 @@ const playerReducer = (state=intialState, action) => {
       return {
         ...action.payload
       }
+    case 'ADD_BULLET':
+      return {
+        ...action.payload
+      }      
     default:
       return state
   }

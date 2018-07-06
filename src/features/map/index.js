@@ -1,4 +1,6 @@
 import React from 'react'
+import Bullets from '../bullets'
+
 import { connect } from 'react-redux'
 import {SPRITE_SIZE} from '../../config/constants'
 
@@ -8,14 +10,26 @@ function getTileSprite(type) {
   switch (type) {
     case 0:
       return 'grass'
+    case 1:
+      return 'shelter'      
+    case 2:
+      return 'eagle'            
     case 3:
-      return 'crossable-grass'      
+      return 'flag'                  
     case 4:
       return 'chest'            
     case 5:
-      return 'rock'      
+      return 'wall'      
     case 6:
-      return 'tree'            
+      return 'rock'            
+    case 7:
+      return 'wall-cube'      
+    case 8:
+      return 'rock-cube'                        
+    case 9:
+      return 'boom'                              
+    default:
+      return 'grass'
   }
 }
 
@@ -34,7 +48,7 @@ function MapTile(props) {
 function MapRow(props) {
   return (
     <div className="row" style={{height: SPRITE_SIZE}}>
-      { props.tiles.map( tile => <MapTile tile={tile} /> ) }
+      { props.tiles.map( (tile, index) => <MapTile key={index} tile={tile} /> ) }
     </div>
   )
 }
@@ -49,19 +63,20 @@ function Map(props) {
         width: '800px',
         height: '480px',
         border: '4px solid white',
+        margin: '15% auto'
       }}
     >
-    {
-      props.tiles.map( row => <MapRow tiles={row} /> )
-    }
-
+      {
+        props.tiles.map( (row, index) => <MapRow key={index} tiles={row} /> )
+      }
+      <Bullets/>
     </div>
   )
 }
 
 function mapStateToProps(state) {
  return {
-  tiles: state.map.tiles
+    ...state.map
  } 
 }
 

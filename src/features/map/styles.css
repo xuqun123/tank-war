@@ -1,10 +1,31 @@
 .tile {
   display: inline-flex;
-  background-color: #42b842;  
+  background-color: black;  
+}
+
+.eagle {
+  background-image: url('/tiles/eagle.png');
+  background-repeat: no-repeat;
 }
 
 .rock {
   background-image: url('/tiles/rock.png');
+  background-repeat: no-repeat;
+}
+
+.wall {
+  background-image: url('/tiles/wall.png');
+  background-repeat: no-repeat;
+}
+
+.boom {
+  background-image: url('/tiles/boom.png');
+  background-repeat: no-repeat;
+}
+
+.shelter {
+  background-image: url('/tiles/shelter.png');
+  background-repeat: no-repeat;
 }
 
 .tree {
@@ -20,4 +41,19 @@
 
 .crossable-grass {
   background-image: url('/tiles/crossable-grass.png'); 
+}
+
+.rock-cube {
+  background-image: url('/tiles/rock-cube.png');
+  background-repeat: no-repeat;
+}
+
+.wall-cube {
+  background-image: url('/tiles/wall-cube.png');
+  background-repeat: no-repeat;
+}
+
+.shelter-cube {
+  background-image: url('/tiles/shelter-cube.png');
+  background-repeat: no-repeat;
 }
