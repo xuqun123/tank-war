@@ -8,6 +8,11 @@
   background-repeat: no-repeat;
 }
 
+.flag {
+  background-image: url('/tiles/flag.png');
+  background-repeat: no-repeat;
+}
+
 .rock {
   background-image: url('/tiles/rock.png');
   background-repeat: no-repeat;
@@ -25,6 +30,11 @@
 
 .shelter {
   background-image: url('/tiles/shelter.png');
+  background-repeat: no-repeat;
+}
+
+.water {
+  background-image: url('/tiles/water.png');
   background-repeat: no-repeat;
 }
 

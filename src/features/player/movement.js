@@ -81,6 +81,20 @@ export default function handleMovement(player) {
 
     if (obeserveBoundaries(oldPos, newPos) && obeserveImpassable(oldPos, newPos))
       dispatchMove(direction, newPos)
+    else {
+      const walkIndex = getWalkIndex()
+      store.dispatch({
+        type: 'MOVE_PLAYER',
+        payload: {
+          position: store.getState().player.position,
+          direction: direction,
+          spriteLocation: getSpriteLocation(direction, walkIndex),
+          walkIndex: walkIndex,
+          bullets: []
+        }
+      })
+    }
+
   }
 
   function fireBullet() {

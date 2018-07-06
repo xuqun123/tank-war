@@ -11,11 +11,7 @@ function getTileSprite(type) {
     case 0:
       return 'grass'
     case 1:
-      return 'shelter'      
-    case 2:
-      return 'eagle'            
-    case 3:
-      return 'flag'                  
+      return 'shelter'
     case 4:
       return 'chest'            
     case 5:
@@ -23,11 +19,15 @@ function getTileSprite(type) {
     case 6:
       return 'rock'            
     case 7:
-      return 'wall-cube'      
+      return 'water'      
     case 8:
       return 'rock-cube'                        
     case 9:
-      return 'boom'                              
+      return 'boom'
+    case 10:
+      return 'eagle'
+    case 11:
+      return 'flag'
     default:
       return 'grass'
   }

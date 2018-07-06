@@ -1,7 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import bullet from './bullet.png'
-import Delay from 'react-delay-render'
 import Bullet from '../bullet'
 
 function Bullets(props) {

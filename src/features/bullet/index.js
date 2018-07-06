@@ -1,6 +1,5 @@
 import React from 'react'
 import bullet from './bullet.png'
-import Loop from "./Loop"
 
 import store from '../../config/store'
 import {SPRITE_SIZE, MAP_WIDTH, MAP_HEIGHT} from '../../config/constants'
@@ -45,29 +44,46 @@ class Bullet extends React.Component {
     const y = newPos[1] / SPRITE_SIZE
     const x = newPos[0] / SPRITE_SIZE
     const nextTile = tiles[y][x]
+    this.updateTiles(tiles, x, y)
 
-    if (nextTile === 5) {
-      tiles[y][x] = 9
-      store.dispatch({
-        type: 'ADD_TILES',
-        payload: {
-          tiles: tiles,
-          bullets: []
-        }
-      })
-      tiles[y][x] = 0
-      setTimeout(() => {
+    return nextTile < 5
+  }
+
+  updateTiles(tiles, x, y) {
+    const nextTile = tiles[y][x]
+    switch(nextTile) {
+      case 5:
+        tiles[y][x] = 9
         store.dispatch({
-            type: 'ADD_TILES',
-            payload: {
+          type: 'ADD_TILES',
+          payload: {
             tiles: tiles,
             bullets: []
           }
         })
-      }, 100)      
+        tiles[y][x] = 0
+        setTimeout(() => {
+          store.dispatch({
+              type: 'UPDATE_TILES',
+              payload: {
+              tiles: tiles,
+              bullets: []
+            }
+          })
+        }, 100)
+        break  
+      case 10:
+        tiles[y][x] = 11
+        store.dispatch({
+          type: 'ADD_TILES',
+          payload: {
+            tiles: tiles,
+            bullets: []
+          }
+        })    
+        break        
+      default:
     }
-
-    return nextTile < 5
   }
 
   getBulletPosition(direction, oldPos) {
