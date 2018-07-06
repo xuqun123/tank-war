@@ -2,7 +2,7 @@ import React from 'react'
 import bullet from './bullet.png'
 
 import store from '../../config/store'
-import {SPRITE_SIZE, MAP_WIDTH, MAP_HEIGHT} from '../../config/constants'
+import {SPRITE_SIZE, MAP_WIDTH, MAP_HEIGHT, FLAG_POSITION} from '../../config/constants'
 
 class Bullet extends React.Component {
  constructor(props) {
@@ -73,14 +73,21 @@ class Bullet extends React.Component {
         }, 100)
         break  
       case 10:
-        tiles[y][x] = 11
+        FLAG_POSITION.map((row) => tiles[row[0]][row[1]] = 11)
         store.dispatch({
           type: 'ADD_TILES',
           payload: {
             tiles: tiles,
             bullets: []
           }
-        })    
+        }) 
+
+        store.dispatch({
+          type: 'GAMEOVER',
+          payload: {
+            gameover: true,
+          }
+        })            
         break        
       default:
     }
