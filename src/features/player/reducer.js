@@ -16,6 +16,11 @@ const playerReducer = (state=intialState, action) => {
       return {
         ...action.payload
       }      
+    case 'HIDE_PLAYER':
+      return {
+        ...state,
+        hidden: true
+      }            
     default:
       return state
   }

@@ -49,6 +49,7 @@ class Bullet extends React.Component {
     const x = newPos[0] / SPRITE_SIZE
     const nextTile = tiles[y][x]
     this.hitTank(tiles, newPos, x, y)    
+    this.hitPlayer(tiles, newPos, x, y)
     this.updateTiles(tiles, x, y)
     
     return nextTile < 5
@@ -89,6 +90,21 @@ class Bullet extends React.Component {
       return null
     })
   }
+
+  hitPlayer(tiles, newPos, x, y) {
+    const player = store.getState().player
+    if(player.position[0] === newPos[0] && player.position[1] === newPos[1]){
+      console.log("hint player at " + newPos)
+      this.releaseBoom(tiles, x, y)
+      store.dispatch({
+        type: 'HIDE_PLAYER'
+      })
+      store.dispatch({
+        type: 'GAMEOVER',
+        gameover: true,
+      })   
+    }
+  }  
 
   updateTiles(tiles, x, y) {
     const nextTile = tiles[y][x]

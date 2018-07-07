@@ -10,6 +10,7 @@ function Player(props) {
         position: 'absolute',
         top: props.position[1],
         left: props.position[0],
+        display: props.hidden === true ? "none" : "block",
         backgroundImage: `url(${walkSprite})`,
         backgroundPosition: props.spriteLocation,
         width: '20px',
