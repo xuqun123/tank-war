@@ -19,6 +19,10 @@ class Bullet extends React.Component {
     this.timerID = setInterval(() => this.tick(), 50)
   }
 
+  componentWillUnmount() {
+    clearInterval(this.timerID)
+  }  
+
   tick() {
     let newPos = this.getBulletPosition(this.state.direction, this.state.position, 5)
     this.setState({

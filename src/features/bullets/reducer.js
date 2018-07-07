@@ -1,22 +1,16 @@
-const intialState = {
-  bullets: [],
-  last_bullet_position: [0,0]
-}
+const intialState = []
 
 const bulletsReducer = (state=intialState, action) => {
   switch(action.type) {
     case 'ADD_BULLETS':
-      return {
-        ...action.payload
-      }
+      return action.bullets
+      
     case 'REMOVE_BULLETS':
-      return {
-        ...action.payload
-      }      
+      return action.bullets
+            
     case 'ADD_LAST_BULLET_FRAME_ID':
-      return {
-        ...action.payload
-      }            
+      return action.bullets
+                  
     default:
       return state
   }

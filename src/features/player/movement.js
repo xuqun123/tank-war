@@ -98,17 +98,16 @@ export default function handleMovement(player) {
   }
 
   function fireBullet() {
-    let bulletPosition = store.getState().player.position
-    let bullets = store.getState().bullets.bullets
+    let bullets = store.getState().bullets
 
-    bullets = bullets.concat([bulletPosition.concat(store.getState().player.direction)])
-    console.log(bulletPosition)
+    bullets = bullets.concat({
+      position: store.getState().player.position,
+      direction: store.getState().player.direction
+    })
+    console.log(bullets)
     store.dispatch({
       type: 'ADD_BULLETS',
-      payload: {
-        bullets: bullets,
-        last_bullet_position: bulletPosition
-      }
+      bullets: bullets
     })    
   }
 

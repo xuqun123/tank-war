@@ -2,6 +2,7 @@ import React from 'react'
 import walkSprite from './tank1.png'
 import store from '../../config/store'
 import {SPRITE_SIZE, MAP_WIDTH, MAP_HEIGHT, FLAG_POSITION} from '../../config/constants'
+import Bullet from '../bullet'
 
 class Tank extends React.Component {
   constructor(props) {
@@ -10,11 +11,12 @@ class Tank extends React.Component {
       direction: props.direction,
       position: props.position,
       rotate: 0,
-      index: props.index
+      index: props.index,
     }
   }
 
   componentDidMount() {
+    this.fireTick = 0
     this.timerID = setInterval(() => this.tick(), 200)
   }
 
@@ -27,18 +29,39 @@ class Tank extends React.Component {
     let newPos = this.getBulletPosition(this.state.direction, this.state.position)
   
     if(this.obeserveBoundaries(newPos) && this.obeserveImpassable(newPos)){
+      const prevDirection = this.state.direction
+      const prevPos = this.state.position      
       this.setState({
         position: newPos,
         rotate: this.directionToRotateDegree(this.state.direction)
       })     
+
       store.dispatch({
         type: 'UPDATE_TANK',
         index: this.state.index,
         position: newPos,
         direction: this.state.direction
-      })         
+      })  
+      this.openFire()
     } else {
       this.changeDirection()
+    }
+  }
+
+  openFire() {
+    if (this.fireTick === 5) {
+      this.fireTick = 0
+      let bullets = store.getState().bullets
+      bullets = bullets.concat({
+        position: this.state.position,
+        direction: this.state.direction
+      })
+      store.dispatch({
+        type: 'ADD_BULLETS',
+        bullets: bullets
+      })        
+    } else {
+      this.fireTick ++
     }
   }
 
@@ -54,10 +77,12 @@ class Tank extends React.Component {
     } else {
       direction = "WEST"
     }
+    
     this.setState({
       direction: direction,
-      rotate: this.directionToRotateDegree(direction)
+      rotate: this.directionToRotateDegree(direction),
     })
+
     store.dispatch({
         type: 'UPDATE_TANK',
         index: this.state.index,
@@ -127,7 +152,7 @@ class Tank extends React.Component {
           transform: `rotate(${this.state.rotate}deg)`,          
           width: '20px',
           height: '20px'}}>
-      </div>
+      </div>      
     )      
   }
 }

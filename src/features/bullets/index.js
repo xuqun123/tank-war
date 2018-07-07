@@ -15,7 +15,7 @@ function Bullets(props) {
       }}
     >
       {
-        props.bullets.map( (row, index) => <Bullet key={index} position={[row[0], row[1]]} direction={row[2]} /> )
+        props.bullets.map( (bullet, index) => <Bullet key={index} position={bullet.position} direction={bullet.direction} /> )
       }      
     </div>
   )  
@@ -23,7 +23,7 @@ function Bullets(props) {
 
 function mapStateToProps(state) {
   return {
-    ...state.bullets
+    bullets: state.bullets
   }
 }
 
