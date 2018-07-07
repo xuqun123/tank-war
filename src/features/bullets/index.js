@@ -15,7 +15,7 @@ function Bullets(props) {
       }}
     >
       {
-        props.bullets.map( (bullet, index) => <Bullet key={index} position={bullet.position} direction={bullet.direction} /> )
+        props.bullets.map( (bullet, index) => <Bullet key={index} position={bullet.position} direction={bullet.direction} is_player={bullet.is_player} /> )
       }      
     </div>
   )  

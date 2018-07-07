@@ -11,7 +11,8 @@ class Bullet extends React.Component {
       direction: props.direction,
       position: props.position,
       rotate: this.directionToRotateDegree(props.direction),
-      display: true
+      display: true,
+      is_player: props.is_player
     }
   }
 
@@ -92,17 +93,19 @@ class Bullet extends React.Component {
   }
 
   hitPlayer(tiles, newPos, x, y) {
-    const player = store.getState().player
-    if(player.position[0] === newPos[0] && player.position[1] === newPos[1]){
-      console.log("hint player at " + newPos)
-      this.releaseBoom(tiles, x, y)
-      store.dispatch({
-        type: 'HIDE_PLAYER'
-      })
-      store.dispatch({
-        type: 'GAMEOVER',
-        gameover: true,
-      })   
+    if (this.state.is_player !== true){  
+      const player = store.getState().player
+      if(player.position[0] === newPos[0] && player.position[1] === newPos[1]){
+        console.log("hint player at " + newPos)
+        this.releaseBoom(tiles, x, y)
+        store.dispatch({
+          type: 'HIDE_PLAYER'
+        })
+        store.dispatch({
+          type: 'GAMEOVER',
+          gameover: true,
+        })   
+      }
     }
   }  
 

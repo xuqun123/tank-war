@@ -102,7 +102,8 @@ export default function handleMovement(player) {
 
     bullets = bullets.concat({
       position: store.getState().player.position,
-      direction: store.getState().player.direction
+      direction: store.getState().player.direction,
+      is_player: true
     })
     console.log(bullets)
     store.dispatch({
