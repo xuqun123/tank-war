@@ -1,8 +1,7 @@
 import React from 'react'
 import walkSprite from './tank1.png'
 import store from '../../config/store'
-import {SPRITE_SIZE, MAP_WIDTH, MAP_HEIGHT, FLAG_POSITION} from '../../config/constants'
-import Bullet from '../bullet'
+import {SPRITE_SIZE, MAP_WIDTH, MAP_HEIGHT} from '../../config/constants'
 
 class Tank extends React.Component {
   constructor(props) {
@@ -29,8 +28,6 @@ class Tank extends React.Component {
     let newPos = this.getBulletPosition(this.state.direction, this.state.position)
   
     if(this.obeserveBoundaries(newPos) && this.obeserveImpassable(newPos)){
-      const prevDirection = this.state.direction
-      const prevPos = this.state.position      
       this.setState({
         position: newPos,
         rotate: this.directionToRotateDegree(this.state.direction)

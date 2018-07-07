@@ -86,6 +86,7 @@ class Bullet extends React.Component {
           index: index
         })
       }
+      return null
     })
   }
 
