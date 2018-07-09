@@ -116,13 +116,13 @@ class Bullet extends React.Component {
 
   updateTiles(tiles, newPos, x, y) {
     const nextTile = tiles[y][x]
-    switch(nextTile) {      
+    switch(Math.round(nextTile)) {      
       case 5:
         this.releaseBoom(tiles, x, y)
         break  
 
       case 10:
-        FLAG_POSITION.map((row) => tiles[row[0]][row[1]] = 11)
+        FLAG_POSITION.map((row, index) => tiles[row[0]][row[1]] = 11 + 0.1*(index+1))
         store.dispatch({
           type: 'ADD_TILES',
           payload: {

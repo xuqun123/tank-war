@@ -26,8 +26,24 @@ function getTileSprite(type) {
       return 'boom'
     case 10:
       return 'eagle'
+    case 10.1:
+      return 'eagle left-top'          
+    case 10.2:
+      return 'eagle right-top'          
+    case 10.3:
+      return 'eagle left-bottom'          
+    case 10.4:
+      return 'eagle right-bottom'
     case 11:
       return 'flag'
+    case 11.1:
+      return 'flag left-top'          
+    case 11.2:
+      return 'flag right-top'          
+    case 11.3:
+      return 'flag left-bottom'          
+    case 11.4:
+      return 'flag right-bottom'      
     case 12:
       return 'star-wall'      
     default:
