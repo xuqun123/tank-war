@@ -9,7 +9,7 @@ function GameIntro(props) {
       style={{
         position: 'relative',
         background: "#ffffff",
-        marginBottom: "40px",
+        marginTop: "100px",
         height: "200px",
         borderRadius: "5px",
         boxShadow: "0px 0px 2px 2px rgba(105, 90, 166, 0.3)",

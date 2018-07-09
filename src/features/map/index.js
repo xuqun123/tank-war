@@ -75,13 +75,11 @@ function Map(props) {
   return (
     <div
       style={{
-        position: 'relative',
+        position: 'absoule',
         top: '0px',
         left: '0px',
         width: '800px',
-        height: '480px',
-        border: '4px solid white',
-        margin: '10% auto'
+        height: '480px'
       }}
     >
       {

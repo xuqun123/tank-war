@@ -14,8 +14,9 @@ function World(props) {
       style={{
         position: 'relative',
         width: '800px',
-        height: '400px',
-        margin: '20px auto'
+        height: '480px',
+        margin: '5% auto',
+        border: '4px solid white',
     }}>
       <Map />
       <Player/> 
