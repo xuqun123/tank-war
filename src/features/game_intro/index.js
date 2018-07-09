@@ -31,7 +31,7 @@ function GameIntro(props) {
           <strong>
           Or
           </strong>
-          <p>Find the treasure <img alt="" src='/tiles/star.png'/></p>
+          <p>Find and catch the star <img alt="" src='/tiles/star.png'/></p>
       </div>      
       <div className='col-md-4'>
         <h4>To lose:</h4>
@@ -39,7 +39,7 @@ function GameIntro(props) {
           <strong>
           Or
           </strong>
-          <p>The eagle base <img alt="" src='/tiles/eagle.png'/> is destroyed</p>
+          <p>The eagle base <img alt="" src='/tiles/eagle.png' width="20px"/> is destroyed</p>
       </div>      
     </div>
   )  

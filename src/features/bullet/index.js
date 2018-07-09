@@ -109,7 +109,10 @@ class Bullet extends React.Component {
         })
         store.dispatch({
           type: 'GAMEOVER'
-        })   
+        })  
+        store.dispatch({
+          type: 'REMOVE_TANKS'
+        })               
       }
     }
   }  
@@ -132,7 +135,10 @@ class Bullet extends React.Component {
         }) 
         store.dispatch({
           type: 'GAMEOVER'
-        })            
+        })    
+        store.dispatch({
+          type: 'REMOVE_TANKS'
+        })                               
         break    
 
       case 12:
