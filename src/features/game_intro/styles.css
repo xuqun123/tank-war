@@ -1,0 +1,13 @@
+.pad-40 {
+  padding-left: 40px;
+}
+
+.pad-20 {
+  padding-left: 20px;
+}
+
+.col-md-4 {
+  float: left;
+  margin: 0 3%;
+  height: 100px;
+}

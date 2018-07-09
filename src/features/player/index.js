@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import walkSprite from './tank1.png'
+import playerTank from './tank1.png'
 import handleMovement from './movement'
 
 function Player(props) {
@@ -11,7 +11,7 @@ function Player(props) {
         top: props.position[1],
         left: props.position[0],
         display: props.hidden === true ? "none" : "block",
-        backgroundImage: `url(${walkSprite})`,
+        backgroundImage: `url(${playerTank})`,
         backgroundPosition: props.spriteLocation,
         width: '20px',
         height: '20px'}}>

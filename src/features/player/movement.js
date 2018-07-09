@@ -43,6 +43,23 @@ export default function handleMovement(player) {
     const y = newPos[1] / SPRITE_SIZE
     const x = newPos[0] / SPRITE_SIZE
     const nextTile = tiles[y][x]
+
+    if(nextTile === 4) {
+      tiles[y][x] = 0
+      store.dispatch({
+      type: 'ADD_TILES',
+      payload: {
+        tiles: tiles
+        }
+      })
+      store.dispatch({
+        type: 'GAME_WIN'
+      })
+      store.dispatch({
+        type: 'REMOVE_TANKS'
+      })      
+    }
+
     return nextTile < 5
   }
 
@@ -53,7 +70,6 @@ export default function handleMovement(player) {
 
   function dispatchMove(direction, newPos) {
     const walkIndex = getWalkIndex()
-
     store.dispatch({
       type: 'MOVE_PLAYER',
       payload: {
@@ -64,15 +80,7 @@ export default function handleMovement(player) {
         bullets: []
       }
     })
-
-    // store.dispatch({
-    //   type: 'CHANGE_BULLET_DIRECTION',
-    //   payload: {
-    //     position: store.getState().bullet.position,
-    //     direction: direction,
-    //     rotate: rotate
-    //   }
-    // })    
+    console.log("player moves to " + newPos)
   }
 
   function attemptMove(direction) {
@@ -105,7 +113,7 @@ export default function handleMovement(player) {
       direction: store.getState().player.direction,
       is_player: true
     })
-    console.log(bullets)
+    // console.log(bullets)
     store.dispatch({
       type: 'ADD_BULLETS',
       bullets: bullets
@@ -114,7 +122,7 @@ export default function handleMovement(player) {
 
   function handleKeyDown(e) {
     e.preventDefault()
-    if (store.getState().world.gameover !== true) {
+    if (store.getState().world.gameover !== true && store.getState().world.game_win !== true) {
       switch (e.keyCode) {
         case 32:
           return fireBullet()

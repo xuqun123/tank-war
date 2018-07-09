@@ -2,13 +2,14 @@ import React, { Component } from 'react'
 import World from './features/world'
 import { tiles } from './data/maps/1'
 import store from './config/store'
+import {SPRITE_SIZE} from './config/constants'
 
 class App extends Component {
   componentDidMount() {
     store.dispatch({
       type: 'ADD_TILES',
       payload: {
-        tiles: tiles,
+        tiles: this.setupTiles(tiles),
         bullets: []
       }
     })
@@ -31,6 +32,22 @@ class App extends Component {
       direction: 'WEST',
       key_index: Date.now() + 2
     })             
+  }
+
+  setupTiles(tiles) {
+    let newTiles = tiles
+    let treasure = this.getTreasureLocation()
+    while(newTiles[treasure[0]][treasure[1]] !== 5) {
+      treasure = this.getTreasureLocation()
+    } 
+    newTiles[treasure[0]][treasure[1]] = 12
+    console.log("setup treasure at " + [treasure[1]*SPRITE_SIZE, treasure[0]*SPRITE_SIZE])
+
+    return newTiles
+  }
+
+  getTreasureLocation() {
+    return [Math.round(Math.random()*23), Math.round(Math.random()*39)]
   }
 
   render() {

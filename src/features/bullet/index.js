@@ -51,7 +51,7 @@ class Bullet extends React.Component {
     const nextTile = tiles[y][x]
     this.hitTank(tiles, newPos, x, y)    
     this.hitPlayer(tiles, newPos, x, y)
-    this.updateTiles(tiles, x, y)
+    this.updateTiles(tiles, newPos, x, y)
     
     return nextTile < 5
   }
@@ -87,6 +87,12 @@ class Bullet extends React.Component {
           type: 'REMOVE_TANK',
           index: index
         })
+
+        if (store.getState().world.tanks && store.getState().world.tanks.length === 0) {
+          store.dispatch({
+            type: 'GAME_WIN'
+          })
+        }
       }
       return null
     })
@@ -102,19 +108,19 @@ class Bullet extends React.Component {
           type: 'HIDE_PLAYER'
         })
         store.dispatch({
-          type: 'GAMEOVER',
-          gameover: true,
+          type: 'GAMEOVER'
         })   
       }
     }
   }  
 
-  updateTiles(tiles, x, y) {
+  updateTiles(tiles, newPos, x, y) {
     const nextTile = tiles[y][x]
-    switch(nextTile) {
+    switch(nextTile) {      
       case 5:
         this.releaseBoom(tiles, x, y)
         break  
+
       case 10:
         FLAG_POSITION.map((row) => tiles[row[0]][row[1]] = 11)
         store.dispatch({
@@ -124,12 +130,24 @@ class Bullet extends React.Component {
             bullets: []
           }
         }) 
-
         store.dispatch({
-          type: 'GAMEOVER',
-          gameover: true,
+          type: 'GAMEOVER'
         })            
+        break    
+
+      case 12:
+        this.releaseBoom(tiles, x, y)
+        tiles[y][x] = 4
+        store.dispatch({
+          type: 'ADD_TILES',
+          payload: {
+            tiles: tiles,
+            bullets: []
+          }
+        }) 
+        console.log("find tresure at " + newPos)
         break        
+
       default:
         break
     }

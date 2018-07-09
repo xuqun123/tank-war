@@ -21,7 +21,6 @@ class Tank extends React.Component {
 
   componentWillUnmount() {
     clearInterval(this.timerID)
-    console.log("Call me")
   }  
 
   tick() {

@@ -13,7 +13,7 @@ function getTileSprite(type) {
     case 1:
       return 'shelter'
     case 4:
-      return 'chest'            
+      return 'star'                  
     case 5:
       return 'wall'      
     case 6:
@@ -28,6 +28,8 @@ function getTileSprite(type) {
       return 'eagle'
     case 11:
       return 'flag'
+    case 12:
+      return 'star-wall'      
     default:
       return 'grass'
   }
@@ -63,7 +65,7 @@ function Map(props) {
         width: '800px',
         height: '480px',
         border: '4px solid white',
-        margin: '15% auto'
+        margin: '10% auto'
       }}
     >
       {

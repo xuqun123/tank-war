@@ -1,5 +1,6 @@
 const intialState = {
   gameover: false,
+  game_win: false,
   tanks: []
 }
 
@@ -7,8 +8,12 @@ const worldReducer = (state=intialState, action) => {
   switch(action.type) {
     case 'GAMEOVER':
       return Object.assign({}, state, {
-        gameover: action.gameover
+        gameover: true
       })      
+    case 'GAME_WIN':
+      return Object.assign({}, state, {
+        game_win: true
+      })            
     case 'ADD_TANK':
       return Object.assign({}, state, {
         tanks: [
@@ -47,6 +52,10 @@ const worldReducer = (state=intialState, action) => {
             }       
           })
       })
+    case 'REMOVE_TANKS':
+      return Object.assign({}, state, {
+        tanks: []
+      })      
     default:
       return state
   }

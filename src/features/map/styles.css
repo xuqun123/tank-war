@@ -23,6 +23,11 @@
   background-repeat: no-repeat;
 }
 
+.star-wall{
+  background-image: url('/tiles/wall.png');
+  background-repeat: no-repeat; 
+}
+
 .boom {
   background-image: url('/tiles/boom.png');
   background-repeat: no-repeat;
@@ -44,6 +49,11 @@
 
 .chest {
   background-image: url('/tiles/chest.png');
+}
+
+.star {
+  background-image: url('/tiles/star.png');
+  background-repeat: no-repeat;
 }
 
 .grass {

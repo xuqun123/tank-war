@@ -1,6 +1,5 @@
 const intialState = {
-  tiles: [],
-  bullets: []
+  tiles: []
 }
 
 const mapReducer = (state=intialState, action) => {
