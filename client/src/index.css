@@ -4,3 +4,15 @@ body {
   font-family: sans-serif;
   background-color: #030846bd;
 }
+
+@media screen and (orientation:portrait) {
+  .screen-rotate-warning {
+    display: block;
+  }
+}
+
+@media screen and (orientation:landscape) {
+  .screen-rotate-warning {
+    display: none;
+  }
+}
