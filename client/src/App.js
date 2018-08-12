@@ -53,6 +53,22 @@ class App extends Component {
   render() {
     return (
       <div>
+        <div className="screen-rotate-warning" 
+          style={{
+            position: 'absolute',
+            top: 0,
+            width: '100%',
+            height: '1200px',
+            fontSize: '30px',
+            color: 'red',
+            zIndex: 1000,
+            opacity: 0.7,
+            paddingTop: '400px',
+            textAlign: 'center',
+            backgroundColor: 'white'
+        }}>
+          Please rotate your screen to landscape!
+        </div>
         <World/>
       </div>
     )
