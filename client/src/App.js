@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import World from './features/world'
+import RotateWarning from './features/rotate_warning'
 import { tiles } from './data/maps/1'
 import store from './config/store'
 import {SPRITE_SIZE} from './config/constants'
@@ -53,22 +54,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <div className="screen-rotate-warning" 
-          style={{
-            position: 'absolute',
-            top: 0,
-            width: '100%',
-            height: '1200px',
-            fontSize: '30px',
-            color: 'red',
-            zIndex: 1000,
-            opacity: 0.7,
-            paddingTop: '400px',
-            textAlign: 'center',
-            backgroundColor: 'white'
-        }}>
-          Please rotate your screen to landscape!
-        </div>
+        <RotateWarning/>
         <World/>
       </div>
     )

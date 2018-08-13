@@ -5,6 +5,7 @@ import Tank from '../tank'
 import GameWin from '../game_win'
 import GameOver from '../gameover'
 import GameIntro from '../game_intro'
+import MoveButtons from '../move_buttons'
 
 import { connect } from 'react-redux'
 
@@ -18,6 +19,7 @@ function World(props) {
         margin: '5% auto',
         border: '4px solid white',
     }}>
+      <MoveButtons/>
       <Map />
       <Player/> 
       {props.tanks.map((tank, index) => <Tank key={tank.key_index} index={index} direction={tank.direction} position={tank.position}/> )}
